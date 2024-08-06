@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int size;
+    cout<<"Size of array: ";
+    cin>>size;
+    int arr[size];
+    cout<<"Enter elements of array: ";
+    for(int i=0;i<size;i++)
+    {
+        cin>>arr[i];
+    }
+
+    int start=arr[0];
+    int end=arr[0]+size;
+    int xor1=0;
+    int xor2=0;
+    for(int i=start;i<=end;i++)
+    {
+        xor1=xor1^i;
+    }
+    for(int i=0;i<size;i++)
+    {
+        xor2=xor2^arr[i];
+    }
+    int answer=xor1^xor2;
+    cout<<"Answer is : "<<answer;
+
+
+
+    return 0;
+}
