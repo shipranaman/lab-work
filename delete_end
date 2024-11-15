@@ -1,0 +1,77 @@
+#include<iostream>
+using namespace std;
+class node
+{
+    public:
+    int data;
+    node* next;
+    node(int value)
+    {
+        data=value;
+        next=nullptr;
+    }
+};
+node* create(int arr[],node* head,int n)
+{
+     node* temp;
+    for(int i=0;i<n;i++)
+    {
+       
+        if(head==nullptr)
+        {
+            temp=new node(arr[i]);
+            head=temp;
+
+        }
+        else{
+            node *tail=new node(arr[i]);
+            temp->next=tail;
+            temp=tail;
+        }
+        
+    }
+    temp=head;
+    while(temp!=nullptr)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+    return head;
+}
+node* delete_end(node* head)
+{
+    if(head==nullptr) return head;
+    if(head->next==nullptr)
+    {
+        head=nullptr;
+    return head;
+    }
+    node* temp=head;
+    node* prev=nullptr;
+    while(temp->next!=nullptr)
+    {
+        prev=temp;
+        temp=temp->next;
+    }
+    prev->next=nullptr;
+    delete temp;
+    prev=head;
+    while(prev!=nullptr)
+    {
+        cout<<prev->data;
+        prev=prev->next;
+    }
+    return head;
+}
+
+int main()
+{
+    int arr[5]={1,2,3,4,5};
+    node* head=nullptr;
+    head=create(arr,head,5);
+    head=delete_end(head);
+
+
+    return 0;
+
+}
