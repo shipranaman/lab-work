@@ -1,0 +1,93 @@
+#include<iostream>
+using namespace std;
+class node
+{
+    public:
+    int data;
+    node* next;
+    node(int value)
+    {
+        data=value;
+        next=nullptr;
+    }
+};
+node* create(int arr[],node* head,int n)
+{
+     node* temp;
+    for(int i=0;i<n;i++)
+    {
+       
+        if(head==nullptr)
+        {
+            temp=new node(arr[i]);
+            head=temp;
+
+        }
+        else{
+            node *tail=new node(arr[i]);
+            temp->next=tail;
+            temp=tail;
+        }
+        
+    }
+    temp=head;
+    while(temp!=nullptr)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+    return head;
+}
+node* insert_position(node* head,int position,int key)
+{
+    node* temp=head;
+        node* prev=nullptr;
+    if(position==1)
+    {
+         node* tail=new node(key);
+        tail->next=head;
+        head=tail;
+        temp=head;
+        while(temp!=nullptr)
+        {
+            cout<<temp->data;
+            temp=temp->next;
+        }
+    }
+    else{
+         temp=head;
+         prev=nullptr;
+        int size=position-1;
+        while(size--)
+        {
+            prev=temp;
+            temp=temp->next;
+
+        }
+        prev->next=new node(key);
+        prev->next->next=temp;
+        temp=head;
+        while(temp!=nullptr)
+        {
+            cout<<temp->data;
+            temp=temp->next;
+        }
+        return head;
+    }
+}
+
+int main()
+{
+    int arr[5]={1,2,3,4,5};
+    node* head=nullptr;
+    head=create(arr,head,5);
+
+    int position;
+    cin>>position;
+    int key;
+    cin>>key;
+    head=insert_position(head,position,key);
+
+    return 0;
+
+}
