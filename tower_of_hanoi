@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+int count=0;
+long long toh(int n,char from,char aux,char to)
+{
+    if(n==1)
+    {
+         count++;
+    return 1;
+    }
+    else{
+        toh(n-1,from,to,aux);
+        count++;
+        toh(n-1,aux,from,to);
+    }
+    return count;
+
+   
+}
+int main()
+{
+    int n=3;
+    int res=toh(n,'f','a','t');
+    cout<<res;
+    return 0;
+}
